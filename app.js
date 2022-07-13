@@ -1,7 +1,3 @@
-
-
-
-
 function main() {
   const canvas = document.querySelector("#c");
   const fov = 100;
@@ -9,16 +5,13 @@ function main() {
   const near = 0.1;
   const far = 2000;
 
-//   const geometry=new THREE.BoxGeometry(1,1,1)
-//   const material=new THREE.MeshBasicMaterial({
-//     color:'red'
-//   })
-// const boxMesh=new THREE.Mesh(geometry,material)
+  //   const geometry=new THREE.BoxGeometry(1,1,1)
+  //   const material=new THREE.MeshBasicMaterial({
+  //     color:'red'
+  //   })
+  // const boxMesh=new THREE.Mesh(geometry,material)
 
-const loader1=new GLTFLoader();
-
-
-
+  const loader1 = new THREE.GLTFLoader();
 
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.z = 1;
@@ -43,16 +36,17 @@ const loader1=new GLTFLoader();
   // scene.add(boxMesh)
 
   loader1.load(
-    'resources/avatar.glb',
-  
-    function(glb){
-      console.log(glb)
-      const root=glb.scene;
-      scene.add( root );
-    },function(error){
-      console.log("error occured")
+    "resources/avatar.glb",
+
+    function (glb) {
+      console.log(glb);
+      const root = glb.scene;
+      scene.add(root);
+    },
+    function (error) {
+      console.log("error occured");
     }
-  )
+  );
 
   function render() {
     renderer.render(scene, camera);
@@ -60,6 +54,5 @@ const loader1=new GLTFLoader();
   }
   requestAnimationFrame(render);
 }
-
 
 main();
