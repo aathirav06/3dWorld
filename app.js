@@ -10,7 +10,7 @@ function main() {
 
   
 
-  const loader1 = new THREE.GLTFLoader();
+  
   class BasicCharacterControllerProxy {
     constructor(animations) {
       this._animations = animations;
@@ -612,7 +612,7 @@ document.body.appendChild(renderer.domElement);
 
   //background
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.z = 1;
+  camera.position.set(0,1,0);
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
   renderer.setSize(width, height);
@@ -641,19 +641,7 @@ document.body.appendChild(renderer.domElement);
   // scene.add(boxMesh)
 
   //avatar
-  const avatar = loader1.load(
-    "resources/avatar.glb",
-
-    function (glb) {
-      console.log(glb);
-      const root = glb.scene;
-      scene.add(root);
-      root.position.set(0,-2,0);
-    }
-
-    
-    
-  );
+  
 
   // scene.add(avatar);
   // avatar.position.set(100,100,100);
@@ -680,13 +668,20 @@ function ambientSetup() {
 
 //responsive
 
-// window.addEventListener('resize', onWindowResize, false);
+window.addEventListener('resize', function(){
+   var width= window.innerWidth;
 
-// function onWindowResize() {
-//   camera.aspect = window.innerWidth / window.innerHeight;
-//   camera.updateProjectMatrix();
-//   renderer.setSize(window.innerWidth, window.innerHeight)
-// }
+   var height=this.window.innerHeight;
+   rendere.setSize(width,height);
+   camera.aspect=width/height;
+   camera.updateProjectionMatrix;
+  
+});
+
+const controls = new OrbitControls( camera, renderer.domElement );
+controls.update();
+
+
 
 
 
