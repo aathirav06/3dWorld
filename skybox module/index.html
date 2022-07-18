@@ -14,8 +14,11 @@
   </head>
 
   <body>
-    <script src="js/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r96/three.min.js"></script>
+    <!-- <script src="js/three.js"></script> -->
     <script src="js/OrbitControls.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script> -->
+    <script src="https://rawcdn.githack.com/mrdoob/three.js/r96/examples/js/loaders/GLTFLoader.js"></script>
 
     <script>
       var scene = new THREE.Scene();
@@ -124,6 +127,27 @@
       };
 
       GameLoop();
+
+      //GLTF LOADER
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        "../resources/skybox/scene.gltf",
+        function (gltf) {
+          console.log("loaded");
+          scene.add(gltf.scene);
+          gltf.animations;
+          gltf.scene;
+          gltf.scenes;
+          gltf.cameras;
+          gltf.asset;
+        },
+        function (xhr) {
+          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
     </script>
   </body>
 </html>
