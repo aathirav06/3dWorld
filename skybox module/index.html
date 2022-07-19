@@ -134,12 +134,14 @@
         "../resources/skybox/scene.gltf",
         function (gltf) {
           console.log("loaded");
-          scene.add(gltf.scene);
+          const root1=gltf.scene
+          scene.add(root1);
           gltf.animations;
           gltf.scene;
           gltf.scenes;
           gltf.cameras;
           gltf.asset;
+          root1.position.set(-6,-6,0);
         },
         function (xhr) {
           console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
@@ -148,6 +150,22 @@
           console.log(error);
         }
       );
+
+      //avatar
+      const loader1 = new THREE.GLTFLoader();
+      const avatar = loader1.load(
+    "resources/avatar.glb",
+
+    function (glb) {
+      console.log(glb);
+      const root = glb.scene;
+      scene.add(root);
+      root.position.set(0,-6,0);
+    }
+
+    
+    
+  );
     </script>
   </body>
 </html>
